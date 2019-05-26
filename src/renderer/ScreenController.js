@@ -1,5 +1,5 @@
 const React = require('react')
-const { ipcRenderer } = require('electron')
+const { ipcRenderer, remote } = require('electron')
 const styled = require('styled-components').default
 
 const {
@@ -228,6 +228,18 @@ function LoginScreen (props) {
     })
   }
 
+  function onBackupImport () {
+    const opts = {
+      title: this.translate('import_backup_title'),
+      properties: ['openFile'],
+      filters: [{ name: 'DeltaChat .bak', extensions: ['bak'] }]
+    }
+    remote.dialog.showOpenDialog(opts, filenames => {
+      if (!filenames || !filenames.length) return
+      ipcRenderer.send('backupImport', filenames[0])
+    })
+  }
+
   return (
     <LoginWrapper>
       <NavbarWrapper>
@@ -253,6 +265,11 @@ function LoginScreen (props) {
         }
         <Card>
           {children}
+        </Card>
+        <Card>
+          <Button large onClick={() => onBackupImport()}>
+            {tx('import_backup_title')}
+          </Button>
         </Card>
       </div>
     </LoginWrapper>

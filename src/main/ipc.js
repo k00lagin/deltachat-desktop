@@ -49,6 +49,7 @@ function init (cwd, state, logHandler) {
   })
 
   dc.on('DC_EVENT_IMEX_PROGRESS', progress => {
+    console.log('DC_EVENT_IMEX_PROGRESS', progress)
     main.send('DC_EVENT_IMEX_PROGRESS', progress)
   })
 

@@ -320,7 +320,6 @@ class Settings extends React.Component {
               <H5>{this.translate('pref_backup')}</H5>
               <ButtonGroup>
                 <Button onClick={this.onBackupExport}>{this.translate('pref_backup_export_start_button')}</Button>
-                <Button onClick={this.onBackupImport}>{this.translate('import_backup_title')}</Button>
               </ButtonGroup>
             </Card>
             <Card elevation={Elevation.ONE}>

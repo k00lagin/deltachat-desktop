@@ -2,10 +2,10 @@ const path = require('path')
 const series = require('run-series')
 const fs = require('fs')
 const DeltaChat = require('deltachat-node')
-
-module.exports = getLogins
+const log = require('../logger').getLogger('main/logins')
 
 function getLogins (dir, cb) {
+  log.debug('getLogins', dir)
   const tasks = []
   fs.readdir(dir, (err, files) => {
     if (err) return cb(err)
@@ -30,3 +30,5 @@ function getConfig (cwd) {
     DeltaChat.getConfig(cwd, next)
   }
 }
+
+module.exports = getLogins
