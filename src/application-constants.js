@@ -14,6 +14,10 @@ function appWindowTitle () {
   return `${appName()} (${appVersion()})`
 }
 
+function trayIcon () {
+  return path.join(__dirname, '..', 'images', 'deltachat.ico')
+}
+
 function appIcon () {
   // TODO Add .ico file for windows
   return path.join(__dirname, '..', 'images', 'deltachat.png')
@@ -62,6 +66,7 @@ module.exports = {
   appName,
   appVersion,
   appWindowTitle,
+  trayIcon,
   appIcon,
   homePageUrl,
   gitHubUrl,
