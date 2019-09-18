@@ -11,12 +11,15 @@ const main = module.exports = {
   toggleAlwaysOnTop,
   isAlwaysOnTop,
   toggleDevTools,
-  win: null
+  win: null,
+  tray: null
 }
 
 const electron = require('electron')
 const debounce = require('debounce')
 const {
+  appName,
+  trayIcon,
   appIcon,
   appWindowTitle,
   windowDefaults
@@ -55,6 +58,14 @@ function init (app, options) {
       nodeIntegration: true
     }
   })
+
+  const tray = main.tray = new electron.Tray(trayIcon());
+  const contextMenu = electron.Menu.buildFromTemplate([
+    { type: 'normal', role: 'forceReload' },
+    { type: 'normal', role: 'quit' }
+  ])
+  tray.setToolTip(appName())
+  tray.setContextMenu(contextMenu)
 
   win.loadURL(defaults.main)
 
