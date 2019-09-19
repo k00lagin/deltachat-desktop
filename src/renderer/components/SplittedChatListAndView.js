@@ -44,6 +44,29 @@ const Welcome = styled.div`
   height: calc(100vh - 50px);
   margin-top: 50px;
   text-align: center;
+  background-image: ${props => props.theme.chatViewBgImgPath};
+  background-size: cover;
+  background-color: ${props => props.theme.chatViewBg};
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  h1,
+  h3,
+  p {
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 7px 14px;
+    background-color: ${props => props.theme.infoMessageBubbleBg};
+    border-radius: 10px;
+    opacity: 0.44;
+    color: ${props => props.theme.infoMessageBubbleText};
+  }
+
+  p {
+    font-style: italic;
+  }
 `
 
 class SplittedChatListAndView extends React.Component {
